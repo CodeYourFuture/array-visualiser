@@ -1,0 +1,156 @@
+.controls {
+    padding: 15px;
+    background-color: #263238;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-areas:
+        "code code code code buttons"
+        "code code code code buttons"
+        "code code code code buttons"
+}
+
+#controlForm {
+    margin: 0;
+}
+
+#copyButton, #shareButton {
+    float: right;
+    background-color: #4DD0E1;
+    border-radius: 5px;
+    border: 1px solid;
+    font-family: 'Helvetica';
+    font-size: 1.5vw;
+    cursor: pointer;
+}
+
+#copyButton:active, #shareButton:active {
+    background-color: #00ACC1;
+}
+
+#copyButton:hover, #shareButton:hover {
+    background-color: #00ACC1;
+}
+
+#goButton {
+    float: right;
+    background-color: #81C784;
+    border-radius: 5px;
+    border: 1px solid;
+    font-family: 'Helvetica';
+    font-size: 1.5vw;
+    cursor: pointer;
+}
+
+#goButton:hover {
+    background-color: #43A047;
+}
+
+#goButton:active {
+    background-color: #43A047;
+}
+
+#valueFunction, #array {
+    border: 1px solid;
+    border-color: #827717;
+}
+
+code {
+    grid-area: code;
+    font-family: Consolas,"courier new";
+    font-weight:500;
+    color: #81D4FA;
+    background-color: #263238;
+    padding: 3px;
+    font-size: 1.5vw;
+    line-height: 2vw;
+}
+
+select {
+    font-family:inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    color: inherit;
+    background-color: inherit;
+    font-size: inherit;
+    border: 1px solid;
+    border-color: #827717;
+    -webkit-appearance: none;
+}
+
+#valueFunction {
+    max-width: 200px;
+}
+
+.container {
+    display: flex;
+    column-gap: 5px;
+}
+
+#rightPanel {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#console {
+    flex: none;
+    min-height: 8vw;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    padding-left: 10px;
+
+    background-color: #263238;
+    color: white;
+    font: 1rem Inconsolata, monospace;
+    /* text-shadow: 0 0 5px #C8C8C8; */
+    word-wrap: break-word;
+}
+
+.error {
+    color: red;
+}
+
+#questions {
+    flex-grow: 3;
+    background-color: #90A4AE;
+    border: 2px solid #455A64;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+#svgContainer {
+    border: 2px solid #455A64;
+    border-radius: 13px;
+}
+
+.accordion {
+    background-color: #4DD0E1;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    margin-top: 3px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 5px;
+    font-family: 'Helvetica';
+    font-size: 1.2vw;
+    outline: none;
+    transition: 0.4s;
+}
+
+.active, .accordion:hover {
+    background-color: #00ACC1;
+}
+
+.panel {
+    padding: 0 10px;
+    background-color: #81C784;
+    display: none;
+    overflow: hidden;
+    font-family: 'Helvetica';
+    font-size: 1.2vw;
+    border-radius: 5px;
+}

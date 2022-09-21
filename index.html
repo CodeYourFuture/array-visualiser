@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.1.2/svg.min.js"></script>
+    <script src="main.js" type="module"></script>
+</head>
+
+<body>
+    <form id="controlForm">
+        <div id="controls" class="controls">        
+            <code>
+                let arr = <span id="array" contenteditable="true"></span>;<br/>
+                arr.<select id="mode">
+                    <option value="map">map</option>
+                    <option value="filter">filter</option>
+                    <option value="forEach">forEach</option>
+                    <option value="find">find</option>
+                    <option value="findIndex">findIndex</option>
+                    <option value="findLast">findLast</option>
+                    <option value="findLastIndex">findLastIndex</option>
+                </select>(<span id="valueFunction" contenteditable="true"></span>);
+            </code>
+            <button id="shareButton">Copy URL</button>
+            <button id="copyButton">Copy Code</button>
+            <input type="submit" id="goButton" value="Run"></input>
+        </div>
+    </form>
+    <div class="container" id="container">
+        <div id="svgContainer"></div>
+        <div id="rightPanel">
+            <div id="console">
+                <pre><output id="consoleOutput"></output></pre>
+            </div>
+            <div id="questions"></div>
+        </div>
+    </div>
+</body>
+
+</html>
