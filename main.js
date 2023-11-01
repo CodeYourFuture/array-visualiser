@@ -13,8 +13,8 @@ import { questionAndAnswers } from './questionAndAnswers.js';
 
 const params = new URLSearchParams(window.location.search);
 let defaultValues = {
-    array: params.get('array') ? params.get('array') : JSON.stringify(['apple', 'orange', 'banana']),
-    valueFunction: params.get('valueFunction') ? params.get('valueFunction') : v => v.toUpperCase(),
+    array: params.get('array') ? params.get('array') : JSON.stringify([5, 20, 30]),
+    valueFunction: params.get('valueFunction') ? params.get('valueFunction') : function(num) {return num * 2;},
     mode: params.get('mode') ? params.get('mode'): 'map'
 }
 
