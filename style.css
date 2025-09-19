@@ -103,7 +103,6 @@ body {
 }
 
 main {
-    max-width: 1400px;
     margin: 0 auto;
 }
 
@@ -296,6 +295,7 @@ button:active {
     box-shadow: var(--shadow-sm);
     min-width: 600px;
     overflow: auto;
+    flex-shrink: 0;
 }
 
 /* Accordion styles */
