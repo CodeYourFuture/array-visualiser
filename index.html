@@ -1,41 +1,133 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Basic SEO -->
+    <title>Array Method Visualizer - CodeYourFuture</title>
+    <meta name="description" content="Interactive visualizing tool to learn JavaScript array methods. Practice map, filter, forEach with visual examples and real-time code execution.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Array Method Visualizer - CodeYourFuture">
+    <meta property="og:description" content="Interactive visualizing tool to learn JavaScript array methods. Practice map, filter, forEach with visual examples and real-time code execution.">
+    <meta property="og:url" content="https://array-visualizer.codeyourfuture.io/">
+
+    <meta name="keywords" content="JavaScript, array methods, map, filter, forEach, programming tutorial, visualizer">
+
+    <link rel="canonical" href="https://array-visualizer.codeyourfuture.io/">
+
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
 
+    <!-- Favicon -->
+    <link rel="icon" href="https://programming.codeyourfuture.io/favicon.ico">
+
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.1.2/svg.min.js"></script>
     <script src="main.js" type="module"></script>
 </head>
 
 <body>
-    <form id="controlForm">
-        <div id="controls" class="controls">        
-            <code>
-                let arr = <span id="array" contenteditable="true"></span>;<br/>
-                arr.<select id="mode">
-                    <option value="map">map</option>
-                    <option value="filter">filter</option>
-                    <option value="forEach">forEach</option>
-                    <option value="find">find</option>
-                    <option value="findIndex">findIndex</option>
-                    <option value="findLast">findLast</option>
-                    <option value="findLastIndex">findLastIndex</option>
-                </select>(<span id="valueFunction" contenteditable="true"></span>);
-            </code>
-            <button id="shareButton">Copy URL</button>
-            <button id="copyButton">Copy Code</button>
-            <input type="submit" id="goButton" value="Run"></input>
-        </div>
-    </form>
-    <div class="container" id="container">
-        <div id="svgContainer"></div>
-        <div id="rightPanel">
-            <div id="console">
-                <pre><output id="consoleOutput"></output></pre>
+    <div id="visualizationStatus" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+
+    <main>
+        <section aria-labelledby="controls-heading">
+            <h1 id="controls-heading" class="sr-only">Array Method Visualizer Controls</h1>
+
+            <form id="controlForm" role="form" aria-label="Array visualization configuration">
+                <div id="controls" class="controls">
+                    <div class="code-container" role="group" aria-labelledby="code-label">
+                        <label id="code-label" class="sr-only">JavaScript code configuration</label>
+                        <code aria-label="Editable JavaScript code">
+                            let arr = 
+                            <label for="array" class="sr-only">Array values (JSON format)</label>
+                            <input 
+                                type="text" 
+                                id="array" 
+                                name="array"
+                                class="code-input"
+                                aria-label="Array values in JSON format"
+                                aria-describedby="array-help"
+                                placeholder="[5, 20, 30]"
+                            />;<br/>
+                            arr.
+                            <label for="mode" class="sr-only">Array method</label>
+                            <select 
+                                id="mode" 
+                                name="mode"
+                                aria-label="Select array method to visualize"
+                                aria-describedby="method-help"
+                            >
+                                <option value="map">map</option>
+                                <option value="filter">filter</option>
+                                <option value="forEach">forEach</option>
+                                <option value="find">find</option>
+                                <option value="findIndex">findIndex</option>
+                                <option value="findLast">findLast</option>
+                                <option value="findLastIndex">findLastIndex</option>
+                            </select>
+                            (
+                            <label for="valueFunction" class="sr-only">Callback function</label>
+                            <input 
+                                type="text" 
+                                id="valueFunction" 
+                                name="valueFunction"
+                                class="code-input"
+                                aria-label="Callback function code"
+                                aria-describedby="function-help"
+                                placeholder="function(num) {return num * 2;}"
+                            />
+                            );
+                        </code>
+
+                        <div id="array-help" class="sr-only">Enter array values in JSON format, for example: [1, 2, 3]
+                        </div>
+                        <div id="method-help" class="sr-only">Choose which array method to visualize</div>
+                        <div id="function-help" class="sr-only">Enter the callback function to apply to each array
+                            element</div>
+                    </div>
+
+                    <div class="button-group" role="group" aria-label="Action buttons">
+                        <button type="button" id="shareButton" aria-describedby="share-help">
+                            Copy URL
+                        </button>
+                        <button type="button" id="copyButton" aria-describedby="copy-help">
+                            Copy Code
+                        </button>
+                        <button type="submit" id="goButton" aria-describedby="run-help">
+                            Run
+                        </button>
+
+                        <div id="share-help" class="sr-only">Copy shareable URL to clipboard</div>
+                        <div id="copy-help" class="sr-only">Copy the generated JavaScript code to clipboard</div>
+                        <div id="run-help" class="sr-only">Execute the code and show visualization</div>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <section class="container" aria-label="Visualization and output">
+            <div id="svgContainer" role="img" aria-labelledby="viz-title" aria-describedby="viz-description">
+                <h2 id="viz-title" class="sr-only">Array Method Visualization</h2>
+                <p id="viz-description" class="sr-only">Visual representation showing how the array method transforms
+                    the input array</p>
             </div>
-            <div id="questions"></div>
-        </div>
-    </div>
+
+            <aside id="rightPanel" aria-label="Output and help">
+                <section id="console" role="log" aria-labelledby="console-heading" aria-live="polite">
+                    <h3 id="console-heading" class="sr-only">Console Output</h3>
+                    <pre><output id="consoleOutput" aria-label="JavaScript execution results"></output></pre>
+                </section>
+
+                <section id="questions" aria-labelledby="questions-heading">
+                    <h3 id="questions-heading" class="sr-only">Help and Questions</h3>
+                </section>
+            </aside>
+        </section>
+    </main>
+
+    <a href="#controls" class="skip-link">Skip to main content</a>
 </body>
 
 </html>
